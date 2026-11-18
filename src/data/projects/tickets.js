@@ -17,19 +17,19 @@ export const ticketsProject = {
   stats: [
     {
       value: "+$1.4k (2x)",
-      label: "average revenue gain per event: tiered vs flat pricing across all 1,280 searched combinations",
+      label: "average revenue gain per event: tiered vs flat pricing",
     },
     {
-      value: "$986 vs $397",
-      label: "average profit per event, tiered vs flat pricing",
+      value: "1,280",
+      label: "decision combinations the simulator ranks per event",
     },
     {
-      value: "+0.47",
-      label: "venue capacity to profit, vs +0.88 for revenue: costs eat the gain",
+      value: "+$13.41",
+      label: "revenue per added capacity seat, vs +$3.68 that survives as profit: venue and event costs eat the gain",
     },
     {
-      value: "$6.2k vs $3.3k",
-      label: "expected revenue per event: the simulator's best config vs flat $20 pricing",
+      value: "48h",
+      label: "70-98% of presales bought in the final 48 hours before each event",
     },
   ],
   sections: [

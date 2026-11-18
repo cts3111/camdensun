@@ -8,7 +8,7 @@ export const profile = {
   siteTitle: "Camden's Website",
   eyebrow: "Statistics & Data Science, UCLA",
   tagline:
-    "Hi, I'm Camden Sun. I turn data into decisions with Python, statistics, and a healthy dose of curiosity.",
+    "I turn data into decisions with Python, statistics, and a healthy dose of curiosity.",
   email: "camdensun@gmail.com",
   phone: "(650) 279-4249",
   github: "https://github.com/cts3111",
