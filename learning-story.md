@@ -1,11 +1,11 @@
-# Learning Story — camden-website
+# Learning Story: camden-sun (local folder `camden-website/`)
 
 > Running story of how this project was built — actions, why, and key decisions.
 > README.md stays the employer-facing summary.
 
 ## 2026-11-08 — Build history (backfilled)
 
-- **v1 — "bold & creative" gradient design.** React 19 + Vite scaffold, Space Grotesk/Inter, gradient blobs, sun-mark logo (his surname), dark default + light toggle, 4 pages with react-router. Deployed on Vercel (project `camden-website`, handle `housefax`). Verdict: he called it "corny / cookie cutter."
+- **v1 — "bold & creative" gradient design.** React 19 + Vite scaffold, Space Grotesk/Inter, gradient blobs, sun-mark logo (his surname), dark default + light toggle, 4 pages with react-router. Deployed on Vercel (project `camden-website`, renamed `camden-sun` on 2026-11-18, see that entry; handle `housefax`). Verdict: he called it "corny / cookie cutter."
 - **v2 — poster style (Anton).** Restyled after analyzing martingarrix.com's CSS: condensed uppercase Anton display, monochrome + red accent, marquee, hover-invert rows. Verdict: "not what I had in mind" — he provided 5 reference screenshots (Desktop, timestamped) instead.
 - **v3 — editorial scroll-snap one-pager (current).** Built from the screenshots: alternating dark/light full-screen sections (Hero dark → About light → Projects dark → Contact light), soft `scroll-snap` ("pushback"), Cormorant Garamond serif + italic red accents, CSS-art placeholder scenes (no photos), morph-on-hover back-to-top circle + morphing menu lines → X, full-screen menu overlay with staggered italic-on-hover links. **Theme toggle removed at his request** — the alternating sections are the design. Nav inverts over sections via `mix-blend-mode: difference`. react-router removed (single page, anchor links).
 - **Parallax v1.** Mouse-follow on the hero: name + art drifted opposite the cursor with lerp smoothing; hero content centered.
@@ -163,3 +163,32 @@
 - Follow-up: cards stacked vertically in a single centered column (max 760px) so each card reads fully on scroll; card art reshaped to a shorter 200/130 banner and both SVG scenes re-laid to fit that viewBox (wheel R=54 at left, swatches right; tiers rescaled with stubs at the base).
 - Follow-up 2: cards restructured to the user's pasted reference (vision subagent OCR'd it since this session can't view images): image left (~52%), text right, "Key findings" strip at the bottom. Reference style applied: flat and frameless, no card border/shadow/radius, sharp-cornered flat gray art canvas (#ececea), plain uppercase status text instead of a chip, hairline divider between stacked projects, hover = title + divider turn green (no lift). Stats strip got a "Key findings" micro-label.
 - Follow-up 3: user rejected the frameless centered version. Cards are full-width again (grid max-width removed; they fill the whole section width) and are their own containers again: white card, hairline border, 14px radius, soft shadow, gentle hover lift. The left-art / right-text / bottom-findings structure stays.
+
+## 2026-11-12 (late) — Landing page: greeting + about-me hero with slide-in entrance
+
+- User asked the hero to look like a pasted reference (vision subagent OCR'd it in the background): not a giant name; about-me content is the first thing seen; a friendly "Hi!" greeting; text slides into place on load.
+- New hero: left-aligned copy stack with staggered slide-in (heroIn keyframes, 0.05s-0.7s delays): "Hi! I'm" eyebrow in accent green → "Camden Sun" title (down from 10rem to ~6rem clamp) → tagline → one-sentence bio (UCLA + Noah Medical) → five handpicked skill chips → CTA row (lime pill "View my work" + text link "Get in touch"). Orb/rings art stays on the right; mouse parallax now applies to the art only (text keeps its entrance animation, no inline-transform conflict).
+- content.js tagline no longer contains the name (greeting lives in the hero now); btn-pill shares the demo-link pill styles.
+- Reduced-motion guard: .h-anim elements force opacity 1 when animations are disabled, so copy never stays invisible.
+- Verified build passes; dev server up for review. A vision-agent report on the reference may prompt copy/layout refinements.
+- Reference report landed (identified as Kishen NL's Framer portfolio, verified against the live site). Applied its details: the "Hi!" is now the largest text on the page (up to ~8.5rem) with the green "!"; the name moved into a smaller headline ("I'm Camden, a Statistics & Data Science student at UCLA, graduating December 2026"); bio expanded to three lines; skills moved into one lime pill with bullet separators ("Python • SQL • OpenCV • Tableau • Claude Code"); added a "2023 >> 2026" years badge whose digits pop up through a blur; entrance animation changed to slide in from the LEFT (translateX) per the reference; "View my work" became a solid green pill so the lime pill stays unique to skills.
+
+## 2026-11-12 (later) — Ticket stats diversified
+
+- User: stats 1/2/4 were all the same money story. Swapped: stat 2 now "1,280" decision combinations ranked per event; stat 4 now "48h" (70-98% of presales bought in the final 48 hours). Kept "+$1.4k (2x)" and the venue capacity stat.
+
+## 2026-11-12 (later) — Stat unit fix
+
+- The +0.47 stat was a correlation coefficient (r), not dollars. Fixed the label to say "correlation (r)" explicitly (source: output/predictor_report.md, venue capacity vs profit r = +0.47, vs revenue r = +0.88).
+
+## 2026-11-12 (later) — Venue stat in dollars
+
+- User preferred units over correlations. Recomputed from the 11 events: revenue slope +$13.41 per capacity seat, profit slope +$3.68 per seat (costs eat ~$9.72). Stat now shows "+$3.68" with the per-seat comparison; the page chart keeps r (it is a tracking comparison, and its tips already say r = +0.88).
+
+## 2026-11-18 — Vercel project renamed to camden-sun
+
+- The Vercel project was renamed from `camden-website` to `camden-sun` in the Vercel dashboard. The local folder stays `camden-website/`, and the GitHub repo name is unchanged.
+- The old default URL (`camden-website*.vercel.app`) is dead. The new default is now likely of the form `camden-sun-housefax.vercel.app`; the exact spelling can only be confirmed in the Vercel dashboard (project, Settings, Domains), since Vercel appends the team slug when the project name is taken.
+- No code or config changes were needed: `vercel.json`, `vite.config.js`, and the site content contain no hardcoded project URL, and all internal paths are relative.
+- `.vercel/project.json` still holds the same `projectId` and `orgId`, so the local CLI link remains valid even though its cached `projectName` field still says `camden-website`.
+- README.md had no reference to the Vercel project name, so it was unchanged.
